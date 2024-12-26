@@ -1,22 +1,11 @@
 const express = require('express');
+const userRoutes = require('./src/routes/userRoutes');
 const app = express();
-const db = require('./src/database/knex');
 
+app.use(express.json());
 
-db.raw('SELECT 1+1 AS result')
-  .then(() => {
-    console.log('Database connected');
-  })
-  .catch(err => {
-    console.error('Database connection failed:', err);
-  });
-
-app.use(express.json()); 
-
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
-});
+app.use('/users', userRoutes);
 
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+  console.log('Server is running on http://localhost:3000');
 });
