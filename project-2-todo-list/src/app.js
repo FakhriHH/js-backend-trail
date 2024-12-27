@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
-const dotenv = require('dotenv');
+app.use(express.json());  
 
-dotenv.config();
-
-app.use(express.json());
+app.get('/', (req, res) => {
+  res.send('Welcome to the To-Do List API');
+});
 
 app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+  console.log('Server running on http://localhost:3000');
 });
