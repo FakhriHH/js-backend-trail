@@ -1,11 +1,8 @@
 const express = require('express');
 const app = express();
-app.use(express.json());  
+const taskRoutes = require('./routes/taskRoutes');
 
-app.get('/', (req, res) => {
-  res.send('Welcome to the To-Do List API');
-});
+app.use(express.json()); // Middleware untuk membaca JSON
+app.use('/tasks', taskRoutes);
 
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
-});
+app.listen(3000, () => console.log('Server is running on http://localhost:3000'));
